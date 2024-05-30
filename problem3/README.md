@@ -2,98 +2,46 @@
 
 This project includes a refactored `WalletPage` component built using ReactJS with TypeScript. The component displays wallet balances, sorts them based on blockchain priorities, and fetches real-time prices to calculate USD values.
 
-## Table of Contents
+## Issues and Improvements
 
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Component Details](#component-details)
+### Datasource Class Not Implemented
 
-## Overview
+**Issue**: The `Datasource` class is mentioned but not implemented, making it impossible to retrieve prices.
 
-The `WalletPage` component is designed to display a list of wallet balances, sort them according to specified priorities, and display their USD values using real-time price data fetched from an external API.
+**Improvement**: Implement the `Datasource` class to fetch prices.
 
-## Features
+### Dependency Array in useEffect
 
-- Fetches real-time prices from an external API.
-- Filters and sorts wallet balances based on blockchain priorities.
-- Displays balances in a formatted manner.
-- Efficiently updates and re-renders components using React hooks and memoization.
+**Issue**: The `useEffect` hook for fetching prices has an empty dependency array, meaning it will only run once. If `balances` change, prices won't be fetched again, which might be needed depending on the application logic.
 
-## Installation
+**Improvement**: Ensure dependencies are correctly managed. If prices need to be fetched again based on some state change, include those states in the dependency array.
 
-To get started with the project, follow these steps:
+### Improper Filtering Logic in useMemo
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/your-repo/wallet-page.git
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd wallet-page
-    ```
-3. Install the required dependencies:
-    ```sh
-    npm install
-    ```
+**Issue**: The filtering logic in the `useMemo` hook is flawed. The variables `lhsPriority` are used without being defined.
 
-## Usage
+**Improvement**: Correct the filtering and sorting logic by defining and using the correct variables.
 
-To use the `WalletPage` component in your React project, follow these steps:
+### Unnecessary Calculation in Mapping
 
-1. Ensure you have the necessary dependencies installed:
-    ```sh
-    npm install react react-dom typescript @types/react @types/react-dom
-    ```
-2. Import and use the `WalletPage` component in your project:
-    ```typescript
-    import React from 'react';
-    import WalletPage from './components/WalletPage';
+**Issue**: `formattedBalances` is computed but not used. Instead, formatting and calculation are performed inside `rows`.
 
-    const App: React.FC = () => {
-      return (
-        <div>
-          <WalletPage />
-        </div>
-      );
-    };
+**Improvement**: Use `formattedBalances` directly in `rows` to avoid recalculating formatted values.
 
-    export default App;
-    ```
+### Inefficient Mapping and Sorting
 
-3. Start your development server:
-    ```sh
-    npm start
-    ```
+**Issue**: The code maps through `sortedBalances` twice, which is not efficient.
 
-## Component Details
+**Improvement**: Combine formatting and calculation logic into a single mapping to reduce redundant operations.
 
-### WalletPage Component
+### Error Handling
 
-The `WalletPage` component is the main component responsible for displaying wallet balances and their USD values.
+**Issue**: The error handling in `useEffect` uses `console.err` which is a typo and should be `console.error`.
 
-#### Props
+**Improvement**: Fix the typo and consider more robust error handling mechanisms.
 
-The component extends `BoxProps` and can accept any props that a `Box` component can.
+### Missing Type Definitions
 
-#### State
+**Issue**: `balances` is assumed to have a `blockchain` property which is not defined in the `WalletBalance` interface.
 
-- `balances`: Retrieved using the `useWalletBalances` hook.
-- `prices`: Managed using the `useState` hook, fetched from an external API.
-
-#### Hooks
-
-- `useEffect`: Fetches prices from an external API when the component mounts.
-- `useMemo`: Memoizes the sorted balances to prevent unnecessary re-renders.
-
-#### Methods
-
-- `getPriority`: Determines the priority of a blockchain for sorting purposes.
-- Mapping functions to format and render rows of wallet balances.
-
-
-## Tools used
-- CoPilot for error handling
-- Stack overflow for error handling
-- ChatGPT for improved coding efficiency
+**Improvement**: Update the `WalletBalance` interface to include all necessary properties.
