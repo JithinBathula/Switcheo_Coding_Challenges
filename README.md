@@ -93,3 +93,7 @@ The component extends `BoxProps` and can accept any props that a `Box` component
 - Mapping functions to format and render rows of wallet balances.
 
 
+## Tools used
+- CoPilot for error handling
+- Stack overflow for error handling
+- ChatGPT for improved coding efficiency
