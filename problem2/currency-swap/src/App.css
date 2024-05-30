@@ -1,0 +1,93 @@
+/* src/App.css */
+
+body {
+  background-color: #121212;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.MuiPaper-root {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  padding: 2rem;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.3s ease-in-out;
+}
+
+.MuiPaper-root:hover {
+  transform: translateY(-10px);
+}
+
+.MuiTypography-root {
+  color: #2196f3 !important;
+  margin-bottom: 1rem;
+}
+
+.MuiTextField-root {
+  margin-bottom: 16px !important;
+}
+
+.MuiOutlinedInput-root {
+  color: #ffffff !important;
+  background-color: #333333 !important;
+  border-radius: 8px !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #2196f3 !important;
+}
+
+.MuiInputLabel-root {
+  color: #2196f3 !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #2196f3 !important;
+}
+
+.MuiMenuItem-root {
+  color: #ffffff !important;
+  background-color: #333333 !important;
+}
+
+.MuiMenuItem-root.Mui-selected {
+  background-color: #2196f3 !important;
+}
+
+.MuiButton-containedPrimary {
+  background-color: #2196f3 !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #1976d2 !important;
+}
+
+.MuiSnackbarContent-root {
+  background-color: #f44336 !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input {
+  color: #ffffff !important;
+}
+
+.MuiOutlinedInput-input {
+  color: #ffffff !important;
+}
+
+/* Add this CSS rule to target the disabled input field */
+.MuiInputBase-input.Mui-disabled {
+  color: #ffffff !important;
+}
